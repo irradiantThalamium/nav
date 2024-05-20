@@ -1,6 +1,4 @@
-# handles .con files
-
-import pygame
+# handles .con and .log files
 
 def conRead(file):
     lfile = open(file, "r")

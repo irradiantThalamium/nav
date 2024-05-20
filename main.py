@@ -3,10 +3,9 @@
 
 import pygame
 import random
-import datetime
+from datetime import datetime
 # v MY FILES v
 from fhandler import conRead
-
 
 pygame.init()
 screen = pygame.display.set_mode((160, 120),conRead("startup.con"))
@@ -15,8 +14,17 @@ pygame.display.set_caption("Null and Vøid | v0.0")
 clock = pygame.time.Clock()
 running = True
 
+now = datetime.now()
+logInit = now.strftime("%d-%m-%Y-%H%M%S")
+logfl = open("logs/"+logInit+".txt", "w")
+logfl.write(f"-- LOG START --\n- Time: {logInit} -\n")
+logfl.close()
+
 def log(txt):
-    print(txt) # finish this later
+    logfl = open("logs/"+logInit+".txt", "a")
+    logfl.write(f"--{txt}")
+    logfl.close()
+    print(txt)
 
 while running:
     
@@ -30,3 +38,7 @@ while running:
     
     clock.tick(60) 
 pygame.quit()
+logInit = now.strftime("%d-%m-%Y-%H%M%S")
+logfl = open("logs/"+logInit+".txt", "w")
+logfl.write(f"-- LOG END --\n- Time: {logInit} -\n")
+logfl.close()
