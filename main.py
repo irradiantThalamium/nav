@@ -1,5 +1,5 @@
 # okay lets do this
-# uhhhhh
+# uhhhh
 
 import pygame
 import random
