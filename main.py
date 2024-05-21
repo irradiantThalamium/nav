@@ -7,6 +7,7 @@ from pypresence import Presence
 from datetime import datetime
 # v MY FILES v
 from fhandler import conRead, startLog, log, endLog
+from tzmath import hypoCalc
 
 pygame.init()
 screen = pygame.display.set_mode((160, 120),conRead("startup.con")[0])
