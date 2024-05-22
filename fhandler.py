@@ -1,6 +1,15 @@
-# handles .con and .log files
+# handles .con and .log files, and importing the random list
 
 from datetime import datetime
+
+def randInit():
+    lst = open("random.rnd", "r")
+    lst=lst.readlines()[0]
+    fin = []
+    for i in range(0,len(lst[1:-1].split(", "))):
+        fin.append(int(lst[1:-1].split(", ")[i]))
+    return fin
+        
 
 def conRead(file):
     lfile = open(file, "r")
@@ -12,8 +21,8 @@ def conRead(file):
         x = x = i.split()
         if x[0] == "fullscreen" and int(x[1]) == 1:
             fncfg[0] += -2147483648 # this alone is making me regret doing this in python
-                                 # WHY ARE THERE NO UNSIGNED INTEGERS
-                                 # fml
+                                    # WHY ARE THERE NO UNSIGNED INTEGERS
+                                    # fml
         elif x[0] == "autoscale" and int(x[1]) == 1:
             fncfg[0] += 512
         elif x[0] == "bordered" and int(x[1]) == 0:

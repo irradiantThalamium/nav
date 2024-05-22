@@ -1,12 +1,12 @@
 # okay lets do this
 # uhhhh
 
-import pygame
 import random
+import pygame
 from pypresence import Presence
 from datetime import datetime
 # v MY FILES v
-from fhandler import conRead, startLog, log, endLog
+from fhandler import conRead, startLog, log, endLog, randInit
 from tzmath import hypoCalc
 
 pygame.init()
@@ -19,9 +19,13 @@ pres = Presence(discID)
 pres.connect()
 running = True
 
-lines=["Terrah is regretting her life choices...", "// why did i st4rt this 464in?", "This really sucks.", "What the FUCK is a binary space partition and why is it important?!", "Shade and Furia have it easy. I have to code.", "Triple D! ...i hate it."]
+rand = randInit()
+
+lines=["Terrah is regretting her life choices.", "// why did i st4rt this 464in?", "This really sucks.", "What the FUCK is a binary space partition", "Shade and Furia have it easy. I have to code.", "Triple D! ...I hate it."]
 line=random.choice(lines)
 
+class plyr:
+    the=""
 #startLog()
 while running:
     
