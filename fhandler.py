@@ -3,7 +3,7 @@
 from datetime import datetime
 
 def randInit():
-    lst = open("random.rnd", "r")
+    lst = open("def.rnd", "r")
     lst=lst.readlines()[0]
     fin = []
     for i in range(0,len(lst[1:-1].split(", "))):
