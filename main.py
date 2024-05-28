@@ -38,15 +38,20 @@ class plyr:
         keys = pygame.key.get_pressed()
         
         if keys[pygame.K_a]:
-            self.a-=1
+            self.a-=4
         if keys[pygame.K_d]:
-            self.a+=1
+            self.a+=4
+            
+        if keys[pygame.K_UP]:
+            self.l+=4
+        if keys[pygame.K_DOWN]:
+            self.l-=4
         
                 
         mmv = pygame.mouse.get_rel()
         
-        #self.a += round(mmv[0]/100)
-        #self.l += round(mmv[1]/100)
+        self.a += round(mmv[0]/100)
+        self.l += round(mmv[1]/100)
         
         if self.a<0:
             self.a+=360
@@ -56,7 +61,7 @@ class plyr:
         
         if self.l<0:
             self.l+=360
-        elif self.l>359:
+        elif self.l>350:
             self.l-=360
                 
         self.dx=math.sin(self.a)*self.spd
@@ -82,23 +87,21 @@ class plyr:
             self.z += 4
         
         
+        
 pl = plyr()
 
 def draw3d():
     wx, wy, wz = [0,0,0,0],[0,0,0,0],[0,0,0,0]
-    cs, sn = math.cos(radToDeg(pl.a)), math.sin(radToDeg(pl.a)) # AAAAGH WHAT DID YOU DO
+    cs, sn = math.cos(degToRad(pl.a)), math.sin(degToRad(pl.a)) # it would be REALLY FUNNY WOULDNT IT
     x1, y1 = 40-pl.x, 10-pl.y 
     x2, y2 = 40-pl.x, 290-pl.y
-    print("pre:",wx[0],wy[0])
     wx[0]=(x1*cs)-(y1*sn)
     wx[1]=(x2*cs)-(y2*sn)
     
     wy[0]=(y1*cs)-(x1*sn)
     wy[1]=(y2*cs)-(x2*sn)
     
-    print("post-define:",wx[0],wy[0])
-    
-    wz[0]=0-pl.z+((pl.l*wy[0])/32)
+    wz[0]=0-pl.z+((pl.l*wy[0])/64)
     wz[1]=0-pl.z+((pl.l*wy[1])/32)
     
     if wy[0]!=0:
@@ -109,14 +112,12 @@ def draw3d():
         wx[1],wy[1]=wx[1]*200/wy[1]+80, wz[1]*200/wy[1]+60
     else:
         wx[1],wy[1]=80,60
-        
-    print("post-render:",wx[0],wy[0])
     
     if wx[0]>0 and wx[0]<160 and wy[0]>0 and wy[0]<120: 
         drpx(wx[0],wy[0],"red")
     if wx[1]>0 and wx[1]<160 and wy[1]>0 and wy[1]<120: 
         drpx(wx[1],wy[1],"red")
-    pygame.draw.line(screen,"black",[wx[0],wy[0]],[wx[1],wy[1]])
+#     pygame.draw.line(screen,"black",[wx[0],wy[0]],[wx[1],wy[1]])
     
 
 #startLog()
