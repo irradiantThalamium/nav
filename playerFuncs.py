@@ -1,7 +1,7 @@
 # haha the play urr lives here
 
 import math
-from tzmath import radToDeg, degToRad
+from tzmath import radToDeg, degToRad, magCalc
 import pygame
 
 class Player:
@@ -12,9 +12,9 @@ class Player:
         self.dx= 0     # velocity
         self.dy= 0
         self.dz= 0
-        self.sp= 0     # speed
+        self.sp= 4     # speed
         self.gr= 0     # gravity
-        self.fr= 0     # friction
+        self.fr= 0.9   # friction
         self.a = 0     # yaw
         self.l = 0     # pitch
         self.r = 0     # roll (probably will be unused but maybe ill use it for a screen shake or smth)
@@ -32,8 +32,13 @@ class Player:
             self.a += 360
         
         if keys[pygame.K_w]:
-            self.dx+= math.cos(self.a)
-            self.dy+= math.sin(self.a)
+            self.dx+= math.cos(degToRad(self.a))*self.spd
+            self.dy+= math.sin(degToRad(self.a))*self.spd
         if keys[pygame.K_s]:
-            self.dx-= math.cos(self.a)
-            self.dy-= math.sin(self.a)
+            self.dx-= math.cos(degToRad(self.a))*self.spd
+            self.dy-= math.sin(degToRad(self.a))*self.spd
+        
+        self.x += self.dx
+        self.y += self.dy
+        self.z += self.dz
+        
