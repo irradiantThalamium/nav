@@ -37,6 +37,9 @@ class Player:
         if keys[pygame.K_s]:
             self.dx-= math.cos(degToRad(self.a))*self.spd
             self.dy-= math.sin(degToRad(self.a))*self.spd
+
+        if keys[pygame.K_e]:
+            print("ATTACK!!!!")
         
         self.x += self.dx
         self.y += self.dy
