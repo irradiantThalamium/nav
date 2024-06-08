@@ -6,6 +6,10 @@ def hypoCalc(sda,sdb): # a^2 + b^2 = c^2, so invert this
     sdc = math.sqrt((sda**2)+(sdb**2)) # i am a motherfucking idiot lmaoooo
     return sdc
 
+def magCalc(sda,sdb,sdc): # i fucking hate this
+    sdd = math.sqrt((sda**2)+(sdb**2)+(sdc**2))
+    return sdd
+
 def degToRad(inp):
     otp = (inp/180)*3.14
     return otp

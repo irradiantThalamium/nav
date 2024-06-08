@@ -38,7 +38,7 @@ while running:
     
     plyr.pUp()
     print(plyr.a)
-    pygame.draw.line(screen,"black",(plyr.x,plyr.y),(plyr.dx,plyr.dy))
+    pygame.draw.line(screen,"black",(plyr.x,plyr.y),(plyr.x+plyr.dx,plyr.y+plyr.dy)) #sorry i had to go fix this real quick lmao
         
     pygame.display.flip()
 
