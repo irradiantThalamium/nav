@@ -32,8 +32,8 @@ class Player:
             self.a += 360
         
         if keys[pygame.K_w]:
-            self.dx+= math.cos(self.a)
-            self.dy+= math.sin(self.a)
+            self.dx+= math.cos(degToRad(self.a))
+            self.dy+= math.sin(degToRad(self.a))
         if keys[pygame.K_s]:
-            self.dx-= math.cos(self.a)
-            self.dy-= math.sin(self.a)
+            self.dx-= math.cos(degToRad(self.a))
+            self.dy-= math.sin(degToRad(self.a))

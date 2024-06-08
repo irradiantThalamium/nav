@@ -44,7 +44,7 @@ while running:
 
     screen.fill("white") #remove this later, i love screen bleed
     
-    pres.update(state=line,details="Coding...",large_image="lowrestrans",large_text="trans rights!")
+    pres.update(state=line,details="Coding...",large_image="https://raw.githubusercontent.com/TerrahBlu/nav/main/lowrestrans.png",large_text="trans rights!",small_image="https://raw.githubusercontent.com/TerrahBlu/nav/main/pres.png",small_text="also this is made by unnamed studios lmao")
     clock.tick(60) 
 pygame.quit()
 pres.close()
