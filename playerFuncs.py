@@ -14,7 +14,7 @@ class Player:
         self.dz= 0
         self.sp= 4     # speed
         self.gr= 0     # gravity
-        self.fr= 0.9   # friction
+        self.fr= 0.3   # friction
         self.a = 0     # yaw
         self.l = 0     # pitch
         self.r = 0     # roll (probably will be unused but maybe ill use it for a screen shake or smth)
@@ -32,11 +32,11 @@ class Player:
             self.a += 360
         
         if keys[pygame.K_w]:
-            self.dx+= math.cos(degToRad(self.a))*self.spd
-            self.dy+= math.sin(degToRad(self.a))*self.spd
+            self.dx+= math.cos(degToRad(self.a))*self.sp
+            self.dy+= math.sin(degToRad(self.a))*self.sp
         if keys[pygame.K_s]:
-            self.dx-= math.cos(degToRad(self.a))*self.spd
-            self.dy-= math.sin(degToRad(self.a))*self.spd
+            self.dx-= math.cos(degToRad(self.a))*self.sp
+            self.dy-= math.sin(degToRad(self.a))*self.sp
 
         if keys[pygame.K_e]:
             print("ATTACK!!!!")
@@ -44,3 +44,7 @@ class Player:
         self.x += self.dx
         self.y += self.dy
         self.z += self.dz
+        
+        self.dx *= self.fr
+        self.dy *= self.fr
+        self.dz *= self.fr
