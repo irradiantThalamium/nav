@@ -15,7 +15,7 @@ def conRead(file):
     lfile = open(file, "r")
     cfgs = lfile.readlines()
     
-    fncfg=[0]
+    fncfg=[0,False]
     
     for i in cfgs:
         x = x = i.split()
@@ -27,6 +27,8 @@ def conRead(file):
             fncfg[0] += 512
         elif x[0] == "bordered" and int(x[1]) == 0:
             fncfg[0] += 32
+        elif x[0] == "logging" and int(x[1]) == 1:
+            fncfg[1] = True
 
     return fncfg
     
