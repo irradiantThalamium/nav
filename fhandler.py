@@ -32,21 +32,29 @@ def conRead(file):
 
     return fncfg
     
-now = datetime.now()
+now = datetime.now() 
+
+lgquery = False 
 
 def startLog():
+    global lgquery
+    lgquery = True 
     logInit = now.strftime("%d-%m-%Y-%H%M%S")
     logfl = open("logs/"+logInit+".txt", "w")
     logfl.write(f"-- LOG START --\n- Time: {logInit} -\n")
     logfl.close()
     
 def log(txt):
-    logfl = open("logs/"+now.strftime("%d-%m-%Y-%H%M%S")+".txt", "a")
-    logfl.write(f"--{txt}\n")
-    logfl.close()
-    print(txt)
+    global lgquery
+    if lgquery:
+        logfl = open("logs/"+now.strftime("%d-%m-%Y-%H%M%S")+".txt", "a")
+        logfl.write(f"--{txt}\n")
+        logfl.close()
+        print(txt)
     
 def endLog():
+    global lgquery
+    logquery = False 
     logFin = now.strftime("%d-%m-%Y-%H%M%S")
     logfl = open("logs/"+logFin+".txt", "a")
     logfl.write(f"-- LOG END --\n- Time: {logFin} -\n")
