@@ -89,7 +89,7 @@ class Window:
         
 
         
-        if mspos[0] in range(self.x+17,self.x+self.w-1):
+        if mspos[0] in range(self.x+17,self.x+self.w-15):
             if mspos[1] in range(self.y+2,self.y+17):
                 if pygame.mouse.get_pressed()[0] == True:
                     self.x, self.y += pygame.mouse.get_rel()
