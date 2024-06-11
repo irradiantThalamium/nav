@@ -22,12 +22,18 @@ class TextInput:
     def __init__(self,pos,size,text): # xy pos (tuple), size (tuple), default text (str)
         self.x = pos[0]
         self.y = pos[1]
-        self.w = size[0]
-        self.h = size[1]
+        self.mw = size[0]
+        self.mh = size[1]
+        self.w = self.mw
+        self.h = self.mh
         self.d = text
 
     def draw(self,surf):
         mspos = pygame.mouse.get_pos()
+        
+        pygame.draw.rect(surf,(26,25,50),((self.x,self.y),(self.w,self.h)))
+        pygame.draw.rect(surf,(42,47,78),((self.x,self.y),(self.w,self.h)),1)
+        
         if mspos[0] in range(self.x,self.w+1):
             if mspos[1] in range(self.y,self.h+1):
                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_IBEAM)
@@ -83,18 +89,15 @@ class Window:
         
 
         
-        
-        
-        if mspos[0] in range(self.x+2,self.x+15):
-            if mspos[1] in range(self.y+2,self.y+15):
-                if clicked:
-                    self.m = not self.m
-                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+        if mspos[0] in range(self.x+17,self.x+self.w-1):
+            if mspos[1] in range(self.y+2,self.y+17):
+                if pygame.mouse.get_pressed()[0] == True:
+                    self.x, self.y += pygame.mouse.get_rel()
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_SIZEALL)
             else:
                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
-            
         
         if mspos[0] in range(self.x+self.w-2,self.x+self.w+3) or mspos[0] in range(self.x-2,self.x+3):        # sides
             if mspos[1] in range(self.y+2,self.y+(self.h*int(self.m)+1)+(16*int(not self.m))+1):
@@ -118,4 +121,13 @@ class Window:
                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
-        
+
+        if mspos[0] in range(self.x+2,self.x+17):
+            if mspos[1] in range(self.y+2,self.y+17):
+                if clicked:
+                    self.m = not self.m
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
+            else:
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+        else:
+            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
