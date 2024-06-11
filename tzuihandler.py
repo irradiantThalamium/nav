@@ -57,8 +57,8 @@ class Window:
         
         
         
-        if mspos[0] in range(self.x+2,self.x+14):
-            if mspos[1] in range(self.y+2,self.y+14):
+        if mspos[0] in range(self.x+2,self.x+15):
+            if mspos[1] in range(self.y+2,self.y+15):
                 if clicked:
                     self.m = not self.m
                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)
@@ -66,4 +66,17 @@ class Window:
                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+            
+        
+        if mspos[0] in range(self.x+self.w-2,self.x+self.w+3) or mspos[0] in range(self.x-2,self.x+3):        # sides
+            if mspos[1] in range(self.y+2,self.y+(self.h*int(self.m))+(16*int(not self.m))-2):
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_SIZEWE)
+                if pygame.mouse.get_pressed()[0] == True:
+                    if (self.w += pygame.mouse.get_rel()[0]) >= 100:
+                        self.w += pygame.mouse.get_rel()[0]
+            else:
+                pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+        else:
+            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
+            
         
