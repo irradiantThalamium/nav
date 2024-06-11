@@ -1,6 +1,16 @@
 # handles .con and .log files, and importing the random list
 
 from datetime import datetime
+import os
+
+def findPath(file, path):
+    fail = True 
+    for start, dirs, files in os.walk(path):
+        if file in files:
+            fail = False
+            return os.path.join(start, file)
+    if fail:
+        return fail
 
 def randInit():
     lst = open("def.rnd", "r")

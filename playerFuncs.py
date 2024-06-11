@@ -75,10 +75,9 @@ class Player:
         self.dz *= self.fr
         
     def drawAMap(self, screen):
-        pygame.draw.line(screen,"black",(self.x,self.y),(self.x+(self.dx*3),self.y+(self.dy*3)))
         pygame.draw.line(screen,"green",(self.x,self.y),(self.x-(math.sin(degToRad(self.a)))*4,self.y+(math.cos(degToRad(self.a))*4)))
         pygame.draw.line(screen,"red",(self.x,self.y),(self.x+(math.cos(degToRad(self.a)))*10,self.y+(math.sin(degToRad(self.a))*10))) #sorry i had to go fix this real quick lmao
-        
+        pygame.draw.line(screen,"black",(self.x,self.y),(self.x+(self.dx*3),self.y+(self.dy*3)))
                          
                          
                          

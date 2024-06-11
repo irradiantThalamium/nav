@@ -1,12 +1,16 @@
 # load level data
 
-from fhandler import conRead, log
+from fhandler import conRead, log, findPath
 
 config = conRead("startup.con")
 
 def ULMparse(file):
     if file.endswith(".ulm"):
-        rlm = open(file, "r")
+        if findPath(file, "levels/") == True:
+            log("Failed to load level. Error code TZ-4 (File not found)")
+            raise TypeError("Err TZ-4 (File not found)")
+        lpath = findPath(file, "levels/").replace("\\", "/")
+        rlm = open(lpath, "r")
         dat = rlm.readlines()
         
         info = []
@@ -18,15 +22,19 @@ def ULMparse(file):
         print(dat)
         for i in dat:
             idx = dat.index(i)
+            dat[idx] = dat[idx].rstrip("\n")
             print(idx)
-            if idx == 0 and dat[0] != "-- ULevel Map --\n":       # Check to see if the header is correct
+            if idx == 0 and dat[0] != "-- ULevel Map --":       # Check to see if the header is correct
                 log("Failed to load level. Error code TZ-1 (Incorrect or missing header)")
                 raise TypeError("Err TZ-1 (Incorrect or missing header)")
-            if idx in range(1,3):
-                tdat = dat[idx].split()
-                info.append(tdat[1])
+            if idx == 1:
+                tdat = dat[idx].lstrip("Author: ")
+                info.append(tdat)
+            if idx == 2:
+                tdat = dat[idx].lstrip("MapName: ")
+                info.append(tdat)
             if idx == 3:
-                info.append(dat[3].rstrip("\n"))
+                info.append(dat[3])
             
         
         
@@ -37,6 +45,8 @@ def ULMparse(file):
     
     lvldat = [info, vrts, lnes, sdes, scts, scrs]
     
+    print(lvldat)
+    
     return lvldat
 
-ULMparse("levels/tt_default.ulm")
+ULMparse("tt_default.ulm")
