@@ -26,7 +26,7 @@ rand = randInit()
 
 
 print(rand)
-lines=["Terrah is regretting her life choices.", "// why did i st4rt this 464in?", "This really sucks.", "What the FUCK is a binary space partition", "Shade and Furia have it easy. I have to code.", "Triple D! ...I hate it."]
+lines=["Izzy is regretting her life choices.", "// why did i st4rt this 464in?", "This really sucks.", "What the FUCK is a binary space partition", "Shade and Furia have it easy. I have to code.", "Triple D! ...I hate it."]
 line=random.choice(lines)
 
 plyr = Player()
